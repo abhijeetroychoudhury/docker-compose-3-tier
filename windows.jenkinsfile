@@ -1,0 +1,22 @@
+pipeline{
+  agent any
+  stages{
+    stage ('SCM Checkout'){
+      steps{
+        script{
+          git branch: 'master', 
+          credentialsId: 'github-personal', 
+          url: 'https://github.com/abhijeetroychoudhury/docker-compose-3-tier.git'
+        }
+      }
+    }
+    stage('Run Container with application'){
+     steps{
+       script{
+          bat 'docker-compose down'
+          bat 'docker-compose up -d'
+       }
+     }     
+   }
+  }
+}
