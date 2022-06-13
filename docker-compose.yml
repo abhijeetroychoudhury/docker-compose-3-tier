@@ -1,28 +1,28 @@
 version: '2'
 services:
-  fe:
+  frontend:
     image: kammana/emp-fe-comp:1.0
-    container_name: emp-fe
+    container_name: emp-frontend-layer
     ports:
      - "4200:4200"
     networks:
-      - javahome-app
+      - abhijeet-app
   mongodb:
-    container_name: mongodb
+    container_name: mongodb-layer
     image: "mongo:latest"
     networks:
-      - javahome-app
+      - abhijeet-app
     volumes:
       - mongodb:/data/db
   emp-api:
-    container_name: empapi
+    container_name: emp-api-layer
     image: kammana/boot-api:5.0
     ports:
      - "8080:8080"
     networks:
-      - javahome-app
+      - abhijeet-app
 volumes:
   mongodb:
 networks:
-  javahome-app:
+  abhijeet-app:
     driver: bridge
